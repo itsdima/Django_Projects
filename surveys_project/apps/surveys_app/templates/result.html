@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Survey</title>
+	</head>
+	<body>
+		<div style="width: 800px; text-align: center;">
+			<div style="width: 500px; height: 50px; text-align: left; border: 2px solid black; margin: 0 auto;">
+				<p>Thanks for submitting this form! You have submitted this form {{ request.session.times }} times now.</p>
+			</div>
+			<div style="width: 500px; min-height: 250px; text-align: left; margin: 0 auto; border: 2px solid black; margin-top: 10px;">
+				<u><h3>Submitted Infomation</h3></u>
+				<table>
+					<tbody>
+						<tr>
+							<td>Name:</td>
+							<td>{{ request.session.context.name }}</td>
+						</tr>
+						<tr>
+							<td>Dojo Location:</td>
+							<td>{{ request.session.context.location }}</td>
+						</tr>
+						<tr>
+							<td>Favorite Language:</td>
+							<td>{{ request.session.context.language }}</td>
+						</tr>
+						<tr>
+							<td>Commnet:</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<textarea style="margin-left: 12px; width: 265px; min-height: 55px;" readonly>{{ request.session.context.comment }}</textarea>
+				<form action="/" method="post">
+					{% csrf_token %}
+					<input type="submit" name="back" value="Go Back" style="background-color: blue; color: white; display: block; margin: 0 auto;">
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
