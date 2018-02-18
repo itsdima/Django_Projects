@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Session Words</title>
+	</head>
+	<body>
+		<div style="display: inline-block; width: 400px; height: 450px; border-right: 4px solid black; margin-left: 12px;">
+			<h1>Add a new word</h1>
+			<form action="/session_words/addword" method="post">
+				{% csrf_token %}
+				<input type="text" name="newword" style="margin-left: 10px; width: 250px;">
+				<p>Choose color</p>
+				<input type="radio" name="colors" value="red" style="margin-left: 12px;"><label>Red</label><br>
+				<input type="radio" name="colors" value="green" style="margin-left: 12px;"><label>Green</label><br>
+				<input type="radio" name="colors" value="blue" style="margin-left: 12px;"><label>Blue</label><br>
+				<br>
+				<input type="checkbox" name="bigfont" style="width: 15px; height: 15px; vertical-align: middle;"><label>show in BIG fonts!</label><br>
+				<br>
+				<input type="submit" name="addword" value="Add to Session" style="width: 115px; color: white; background-color: blue;">
+			</form>
+		</div>
+		<div style="display: inline-block; width: 400px; height: 450px; vertical-align: top;">
+			<form action="/session_words/clear" method="post">
+				{% csrf_token %}
+				<input type="submit" name="clearsession" value="Clear Session" style="float: right; background-color: pink; width: 100px;">
+			</form>
+			<table style="margin-top: 45px;">
+				<tbody>
+					{% for key in request.session.words %}
+						<tr><td style="color: {{ key.color }}; font-size: {{ key.font }}">{{ key.word }}</td><td> -added on {{ key.time }}</td></tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

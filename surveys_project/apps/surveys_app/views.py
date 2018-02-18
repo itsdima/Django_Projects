@@ -6,11 +6,11 @@ from django.contrib import messages
 
 
 def index(request):
-	return render(request, 'index.html')
+	return render(request, 'surveys_app/index.html')
 
 def result(request):
 	print request.session['context']
-	return render(request, 'result.html')
+	return render(request, 'surveys_app/result.html')
 def process(request):
 	if len(request.POST['name']) < 1:
 		messages.warning(request,'Name Cannot Be Empty!')
