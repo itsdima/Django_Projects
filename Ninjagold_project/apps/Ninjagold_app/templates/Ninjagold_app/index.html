@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ninja Gold</title>
+	</head>
+	<body>
+		<p style="display: inline-block;">Your Gold: <input type="text" name="totalgold" value="{{ request.session.totalgold }}" readonly></p>
+		<div class="container" style="width: 800px; height: 360px; text-align: center;">
+			<div class="earn" style="width: 180px; height: 183px; border-radius: 114px; background-color: blue; display: inline-block; text-align: center;">
+				<h2 style="color: white;">Farm</h2>
+				<p style="color: white;">(earns 10-20 golds)</p>
+				<br>
+				<form action="/process_money" method="post">
+				{% csrf_token %}
+					<input type="hidden" name="action" value="farm">
+					<input type="submit" name="farm" value="Find Gold!">
+				</form>
+			</div>
+			<div class="earn" style="width: 180px; height: 183px; border-radius: 114px; background-color: blue; display: inline-block; margin-left: 10px; margin-right: 10px; text-align: center;">
+				<h2 style="color: white;">Cave</h2>
+				<p style="color: white;">(earns 5-10 golds)</p>
+				<br>
+				<form action="/process_money" method="post">
+				{% csrf_token %}
+					<input type="hidden" name="action" value="cave">
+					<input type="submit" name="cave" value="Find Gold!">
+				</form>
+			</div>
+			<div class="earn" style="width: 180px; height: 183px; border-radius: 114px; background-color: blue; display: inline-block; margin-right: 10px; margin-top: 90px; text-align: center;">
+				<h2 style="color: white;">House</h2>
+				<p style="color: white;">(earns 2-5 golds)</p>
+				<br>
+				<form action="/process_money" method="post">
+				{% csrf_token %}
+					<input type="hidden" name="action" value="house">
+					<input type="submit" name="house" value="Find Gold!">
+				</form>
+			</div>
+			<div class="earn" style="width: 180px; height: 183px; border-radius: 114px; background-color: blue; display: inline-block; text-align: center;">
+				<h2 style="color: white;">Casino</h2>
+				<p style="color: white;">(earns/takes 0-50 golds)</p>
+				<br>
+				<form action="/process_money" method="post">
+				{% csrf_token %}
+					<input type="hidden" name="action" value="casino">
+					<input type="submit" name="farm" value="Find Gold!">
+				</form>
+			</div>
+		</div>
+		<p style="text-align: left;">Activities:</p>
+		<div class="log" style="width: 800px; height: 100px; overflow-y: scroll; border: 1.5px solid black;">
+			<table>
+				<tbody>
+					{% for key in request.session.log %}
+						<tr><td style=" color: {{ key.color }};"> {{ key.message }} </td><td style="color: {{ key.color }};"> - {{ key.time }} </td></tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<form action="/restart" method="post">
+			{% csrf_token %}
+			<input type="submit" name="restart" value="Start Over" style="width: 100px; display: inline-block; margin-top: 15px;">
+		</form>
+	</body>
+</html>
