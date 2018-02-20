@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Users</title>
+	</head>
+	<body>
+	<style>
+		tbody tr:nth-child(even){
+			background-color: silver;
+		}
+	</style>
+		<h1>Users</h1>
+		<table style="border: 2px solid black; border-collapse: collapse;">
+			<thead style="background-color: silver;">
+				<tr>
+					<td style="border-right: 2px solid black;">id</td>
+					<td style="border-right: 2px solid black;">Full Name</td>
+					<td style="border-right: 2px solid black;">Email</td>
+					<td style="border-right: 2px solid black;">Created At</td>
+					<td>Actions</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in thisuser %}
+					<tr>
+						<td style="border-right: 2px solid black;">{{ user.id }}</td>
+						<td style="border-right: 2px solid black;">{{ user.first_name }} {{ user.last_name }}</td>
+						<td style="border-right: 2px solid black;">{{ user.email }}</td>
+						<td style="border-right: 2px solid black;">{{ user.created_at }}</td>
+						<td><a href="/users/{{ user.id }}">Show</a> <a href="/users/{{ user.id }}/edit">Edit</a> <a href="/users/{{ user.id }}/destroy">Delete</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<a href="/users/new">Add a new user</a>
+	</body>
+</html>
