@@ -10,16 +10,16 @@ def index(request):
 	allusers = {
 	'thisuser': User.objects.all()
 	}
-	print allusers
 	return render(request, 'restful_users_app/index.html', allusers)
 
 def create(request):
+	if len(request.POST['first_name']) < 1 or len(request.POST['last_name']) < 1 or len(request.POST['email']) < 1:
+		return redirect('/')
 	first_name = request.POST['first_name']
 	last_name = request.POST['last_name']
 	email = request.POST['email']
 	create = User.objects.create(first_name=first_name, last_name=last_name, email=email)
 	userId = User.objects.last()
-	print create
 	return redirect('/users/'+ str(userId.id))
 
 def new(request):
