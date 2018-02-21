@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Login/Register</title>
+	</head>
+	<body>
+		{% if messages %}
+			<ul>
+    			{% for message in messages %}
+    				<li style="color: red;">{{ message }}</li>
+    			{% endfor %}
+			</ul>
+		{% endif %}
+		<div>
+			<form action="/login" method="post">
+			{% csrf_token %}
+				<h1>Login</h1>
+				<table>
+					<tbody>
+						<tr>
+							<td>Email:</td>
+							<td><input type="text" name="logemail"></td>
+						</tr>
+						<tr>
+							<td>Password:</td>
+							<td><input type="password" name="logpassword"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="submit" name="submit" style="float: right;"></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+		<div>
+			<form action="/register" method="post">
+			{% csrf_token %}
+				<h1>Register</h1>
+				<table>
+					<tbody>
+						<tr>
+							<td>First Name:</td>
+							<td><input type="text" name="first_name"></td>
+						</tr>
+						<tr>
+							<td>Last Name:</td>
+							<td><input type="text" name="last_name"></td>
+						</tr>
+						<tr>
+							<td>Email:</td>
+							<td><input type="text" name="email"></td>
+						</tr>
+						<tr>
+							<td>Password:</td>
+							<td><input type="password" name="password"></td>
+						</tr>
+						<tr>
+							<td>Confirm Password:</td>
+							<td><input type="password" name="confirm"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="submit" name="submit" style="float: right;"></td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+	</body>
+</html>
