@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Courses</title>
+	</head>
+	<body>
+		{% load tz %}
+		{% if messages %}
+			<ul class="messages">
+    			{% for message in messages %}
+    				<li style="color: red">{{ message }}</li>
+    			{% endfor %}
+			</ul>
+		{% endif %}
+		<h1>Add a new Course</h1>
+		<form action="/add" method="post">
+		{% csrf_token %}
+			<table>
+				<tbody>
+					<tr>
+						<td>Name:</td>
+						<td><input type="text" name="name" style="width: 200px"></td>
+					</tr>
+					<tr>
+						<td>Description:</td>
+						<td><textarea name="desc" style="width: 198px; height: 75px;"></textarea></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><input type="submit" name="add" value="Add" style="float: right; background-color: green; color: white;"></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<h1>Courses</h1>
+		<table style="border: 2px solid black; border-collapse: collapse;">
+			<thead>
+				<tr style="background-color: silver;">
+					<td style="border-right: 2px solid black;">Course Name</td>
+					<td style="border-right: 2px solid black;">Description</td>
+					<td style="border-right: 2px solid black;">Date Added</td>
+					<td style="border-right: 2px solid black;">Actions</td>
+				</tr>
+			</thead>
+			<tbody>
+				{% for course in thiscourse %}
+					<tr>
+						<td style="border-right: 2px solid black;">{{ course.name }}</td>
+						<td style="border-right: 2px solid black;">{{ course.desc }}</td>
+						<td style="border-right: 2px solid black;">{{ course.created_at|localtime }}</td>
+						<td><a href="/courses/destroy/{{ course.id }}">Delete</a></td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Destroy</title>
+	</head>
+	<body>
+		<h1>Are you sure you want to delete the following course?</h1>
+		<table style="margin-bottom: 12px;">
+			<tbody>
+				<tr>
+					<td>Name:</td>
+					<td>{{ name }}</td>
+				</tr>
+				<tr>
+					<td>Description:</td>
+					<td>{{ desc }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<a href="/"><button>No</button></a> <a href="/courses/destroy/{{ id }}/process"><button style="background-color: red;">Yes! I want to delete this</button></a>
+	</body>
+</html>

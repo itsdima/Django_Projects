@@ -13,10 +13,10 @@ def result(request):
 	return render(request, 'surveys_app/result.html')
 def process(request):
 	if len(request.POST['name']) < 1:
-		messages.warning(request,'Name Cannot Be Empty!')
+		messages.error(request,'Name Cannot Be Empty!')
 		return redirect('/')
 	if len(request.POST['comment']) > 120:
-		messages.warning(request,'Comment should be less than 120 characters!')
+		messages.error(request,'Comment should be less than 120 characters!')
 		return redirect('/')
 	if 'times' in request.session:
 		request.session['times'] += 1

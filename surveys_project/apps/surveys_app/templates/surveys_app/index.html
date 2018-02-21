@@ -4,6 +4,13 @@
 		<title>Survey</title>
 	</head>
 	<body>
+		{% if messages %}
+			<ul class="messages">
+    			{% for message in messages %}
+    				<li style="color: red;">{{ message }}</li>
+    			{% endfor %}
+			</ul>
+		{% endif %}
 		<div style="width: 800px; text-align: center;">
 			<div style="width: 450px; height: 450px; margin: 0 auto; border: 2px solid black;">
 				<form action="/process" method="post" style="text-align: left;">
